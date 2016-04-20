@@ -13,7 +13,6 @@ abstract class BaseController extends \yii\web\Controller
 {
   public function run()
   {
-    parent::run();
     \app\components\SocketDaemon::setConfig(Yii::$app->params['socketHost'], Yii::$app->params['socketHost']);
   }
 }
