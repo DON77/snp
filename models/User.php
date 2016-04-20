@@ -3,10 +3,11 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
-
+use \app\components\Model;
 /**
  * This is the model class for table "user".
  *
@@ -23,13 +24,13 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class User extends \yii\db\ActiveRecord  implements IdentityInterface
+class User extends Model  implements IdentityInterface
 {
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     const STATUS_NOTACTIVATED = 20;
-
+    
     /**
      * @inheritdoc
      */
@@ -37,6 +38,8 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     {
         return 'user';
     }
+    
+    
 
     /**
      * @inheritdoc
@@ -215,5 +218,7 @@ class User extends \yii\db\ActiveRecord  implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    
 
 }

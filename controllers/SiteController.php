@@ -17,7 +17,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout','friends'],
+                        'actions' => ['logout','friends','list'],
                         'allow' => true,
                          'roles' => ['?'],
                     ],
@@ -85,12 +85,18 @@ class SiteController extends Controller
     
     public function actionFriends(){
        
-         if(Yii::$app->request->isPost){
-             
+         if(!Yii::$app->request->isPost){
+             die ( json_encode( [ 'error' => 'This method allowed only to serve post requests' ] ) );
             die(json_encode(Yii::$app->request->post()));
         }else{
             echo('4eghav');die;
-        }
+        }   
+    }
+    
+    public function actionList($id = 1){
+        $model = new \app\models\Friends;
+        $list = $model->getList($id);
+        return json_encode($list);
         
     }
 

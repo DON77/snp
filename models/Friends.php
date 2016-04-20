@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\components\Model;
 
 /**
  * This is the model class for table "{{%friends}}".
@@ -12,7 +13,7 @@ use Yii;
  * @property integer $user2
  * @property integer $approve
  */
-class Friends extends \yii\db\ActiveRecord
+class Friends extends Model
 {
     /**
      * @inheritdoc
@@ -44,5 +45,12 @@ class Friends extends \yii\db\ActiveRecord
             'user2' => 'User2',
             'approve' => 'Approve',
         ];
+    }
+    
+    public function getList($id){
+        
+        $rows = $this->connection->createCommand('SELECT * FROM FRIENDS WHERE user1 ='. $id . ' OR user2 = '.$id)->queryAll();
+        
+        return $rows;
     }
 }
