@@ -19,7 +19,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout','friends'],
                         'allow' => true,
-                        'roles' => ['*'],
+                         'roles' => ['?'],
                     ],
                     
                 ],
@@ -28,6 +28,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'friends' => ['post'],
                     
                   
                 ],
@@ -47,6 +48,13 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+//    public function beforeAction($action) {
+//        
+//       
+//        parent::beforeAction($action);
+//        
+//    }
 
     public function actionIndex()
     {
@@ -72,11 +80,18 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+       
     }
     
     public function actionFriends(){
-        print_r(Yii::$app->request->post());die;
+       
+         if(Yii::$app->request->isPost){
+             
+            die(json_encode(Yii::$app->request->post()));
+        }else{
+            echo('4eghav');die;
+        }
+        
     }
 
 }

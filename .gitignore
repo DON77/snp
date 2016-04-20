@@ -27,3 +27,5 @@ phpunit.phar
 
 config/db.php
 /composer.phar
+/web/js/ajax.js
+/web/js/main.js
