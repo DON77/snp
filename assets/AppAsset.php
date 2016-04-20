@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/main.js', ///for local testing 
+        'js/jquery-2.2.3.min.js',
         'js/bundle.js'
     ];
     public $depends = [
