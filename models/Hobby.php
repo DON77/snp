@@ -3,14 +3,14 @@
 namespace app\models;
 
 use Yii;
-
+use \app\components\Model;
 /**
  * This is the model class for table "{{%hobby}}".
  *
  * @property integer $id
  * @property string $title
  */
-class Hobby extends \yii\db\ActiveRecord
+class Hobby extends Model
 {
     /**
      * @inheritdoc
