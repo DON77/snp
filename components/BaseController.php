@@ -9,7 +9,7 @@
 namespace app\components;
 
 
-abstract class BaseController extends \yii\web\Controller
+class BaseController extends \yii\web\Controller
 {
   public function beforeAction()
   {
