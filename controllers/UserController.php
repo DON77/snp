@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         return [
             'contentNegotiator' => [
+                'class' => \yii\filters\ContentNegotiator::className(),
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                 ],
