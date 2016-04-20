@@ -7,13 +7,16 @@
  */
 
 namespace app\components;
+use yii\web\Controller as BaseController;
 
-
-abstract class BaseController extends \yii\web\Controller
+class Controller extends BaseController
 {
   public function beforeAction($action)
   {
     \app\components\SocketDaemon::setConfig(\Yii::$app->params['socketHost'], \Yii::$app->params['socketHost']);
+
+    return parent::beforeAction($action);
+
   }
 }
 
