@@ -19,10 +19,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/pace.css',
+        'css/toastr.min.css',
     ];
     public $js = [
         'js/main.js', ///for local testing 
         'js/jquery.js',
+        'js/pace.js',
+        'js/toastr.min.js',
+        'js/scripts.js',
         'js/bundle.js'
     ];
     public $depends = [
