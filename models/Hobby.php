@@ -41,4 +41,9 @@ class Hobby extends Model
             'title' => 'Title',
         ];
     }
+    
+    public function getList(){
+        $query = "SELECT * FROM ".self::tableName();
+        return parent::getList($query);
+    }
 }
