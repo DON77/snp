@@ -1,0 +1,23 @@
+{
+  "name": "SNP",
+  "version": "1.0.0",
+  "description": "AoD SNP",
+  "dependencies": {
+    "babel": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "babelify": "latest",
+    "browserify": "latest",
+    "classnames": "^2.2.3",
+    "gulp": "latest",
+    "gulp-sass": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router": "latest",
+    "vinyl-source-stream": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
