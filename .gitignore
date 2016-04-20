@@ -26,5 +26,4 @@ phpunit.phar
 /phpunit.xml
 
 config/db.php
-/web/js/
 /composer.phar
