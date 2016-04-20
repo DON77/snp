@@ -17,7 +17,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout','friends','list'],
+                        'actions' => ['logout','friends','list','hobbies'],
                         'allow' => true,
                          'roles' => ['?'],
                     ],
@@ -28,7 +28,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
-                    'friends' => ['post'],
+                  
                     
                   
                 ],
@@ -83,7 +83,7 @@ class SiteController extends Controller
        
     }
     
-    public function actionFriends(){
+    public function actionFriend(){
        
          if(!Yii::$app->request->isPost){
              die ( json_encode( [ 'error' => 'This method allowed only to serve post requests' ] ) );
@@ -93,11 +93,16 @@ class SiteController extends Controller
         }   
     }
     
-    public function actionList($id = 1){
+    public function actionFriends($id = 1){
         $model = new \app\models\Friends;
         $list = $model->getList($id);
+        return json_encode($list); 
+    }
+    
+    public function actionHobbies(){
+        $model = new \app\models\Hobby();
+        $list = $model->getList($id);
         return json_encode($list);
-        
     }
 
 }

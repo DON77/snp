@@ -48,9 +48,8 @@ class Friends extends Model
     }
     
     public function getList($id){
+        $query = 'SELECT * FROM '.self::tableName().' WHERE user1 ='. $id . ' OR user2 = '.$id;
         
-        $rows = $this->connection->createCommand('SELECT * FROM FRIENDS WHERE user1 ='. $id . ' OR user2 = '.$id)->queryAll();
-        
-        return $rows;
+        return parent::getList($query,$id);
     }
 }
