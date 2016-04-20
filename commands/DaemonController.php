@@ -23,11 +23,9 @@ class DaemonController extends Controller
      * This command echoes what you have entered as the message.
      * @param string $message the message to be echoed.
      */
-    public function startIndex()
+    public function actionStart()
     {
         set_time_limit(0);
-        $host = 'localhost'; //host
-        $port = '8080'; //port
         $daemon = new \app\components\SocketDaemon(Yii::$app->params['socketHost'], Yii::$app->params['socketPort']);
         $daemon->start();
     }
