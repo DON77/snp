@@ -97,7 +97,12 @@ class UserController extends Controller
     public function actionRegister()
     {
         /** @var  $user \app\models\User */
+<<<<<<< Updated upstream
 
+=======
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+>>>>>>> Stashed changes
         $post = Yii::$app->request->post();
 
         $model = new RegistrationForm;

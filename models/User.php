@@ -57,6 +57,10 @@ class User extends Model  implements IdentityInterface
             [['password_reset_token'], 'unique'],
         ];
     }
+    
+    public function getFname($id){
+        return $this->connection->createCommand('SELECT fname FROM '.self::tableName().' WHERE id = '.$id)->queryOne();
+    }
 
     /**
      * @inheritdoc

@@ -17,7 +17,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout','friends','list','hobbies'],
+                        'actions' => ['logout','friends','list','hobbies','relatives'],
                         'allow' => true,
                          'roles' => ['?'],
                     ],
@@ -98,8 +98,11 @@ class SiteController extends Controller
         return json_encode($list);
     }
     
-//    public function actionRelatives(){
-//        $model = new 
-//    }
+    public function actionRelatives($id){
+        
+        $model = new \app\models\Friends;
+        $list = $model->getFriendsfriends($id);
+        return json_encode($list);
+    }
 
 }

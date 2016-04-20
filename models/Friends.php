@@ -12,21 +12,19 @@ use Yii;
  * @property string $accepter
  * @property integer $approve
  */
-class Friends extends \app\components\Model
-{
+class Friends extends \app\components\Model {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'friends';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['requester', 'accepter'], 'required'],
             [['requester', 'accepter', 'approve'], 'integer'],
@@ -36,8 +34,8 @@ class Friends extends \app\components\Model
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'requester' => 'Requester',
@@ -45,11 +43,27 @@ class Friends extends \app\components\Model
             'approve' => 'Approve',
         ];
     }
+
+    public function getList($id) {
+        $query = 'SELECT requester,accepter FROM ' . self::tableName() . ' WHERE requester =' . $id;
+        return parent::getList($query, $id);
+    }
     
-        
-   public function getList($id){ 
-       $query = 'SELECT * FROM '.self::tableName().' WHERE requester ='. $id; 
-        
-       return parent::getList($query,$id); 
-   } 
+    public function getFriendsfriends($id){
+        $model = new User();
+        $friends = $this->getList($id);
+        $result['owner']['name'] = $model->getFname($id)['fname'];
+        foreach($friends as $friends_id){
+            $result['owner']['friends'][] = User::getFname($friends_id['accepter']);
+            
+            $fof = $this->getList($friends_id['accepter']);
+            foreach($fof as $item){
+                $label = User::getFname($item['requester']);
+                
+                $result['owner']['friends of '.$label['fname']][] = User::getFname($item['accepter']);
+            }
+        }
+        out($result);
+        return $result;
+    }
 }
