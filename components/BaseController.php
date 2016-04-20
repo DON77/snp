@@ -9,9 +9,9 @@
 namespace app\components;
 
 
-class BaseController extends \yii\web\Controller
+abstract class BaseController extends \yii\web\Controller
 {
-  public function beforeAction()
+  public function beforeAction($action)
   {
     \app\components\SocketDaemon::setConfig(Yii::$app->params['socketHost'], Yii::$app->params['socketHost']);
   }
