@@ -83,19 +83,12 @@ class SiteController extends Controller
        
     }
     
-    public function actionFriend(){
-       
-         if(!Yii::$app->request->isPost){
-             die ( json_encode( [ 'error' => 'This method allowed only to serve post requests' ] ) );
-            die(json_encode(Yii::$app->request->post()));
-        }else{
-            echo('4eghav');die;
-        }   
-    }
+   
     
     public function actionFriends($id = 1){
         $model = new \app\models\Friends;
         $list = $model->getList($id);
+        out($list);
         return json_encode($list); 
     }
     
@@ -104,5 +97,9 @@ class SiteController extends Controller
         $list = $model->getList($id);
         return json_encode($list);
     }
+    
+//    public function actionRelatives(){
+//        $model = new 
+//    }
 
 }

@@ -3,24 +3,23 @@
 namespace app\models;
 
 use Yii;
-use app\components\Model;
 
 /**
- * This is the model class for table "{{%friends}}".
+ * This is the model class for table "friends".
  *
  * @property integer $id
- * @property integer $user1
- * @property integer $user2
+ * @property string $requester
+ * @property string $accepter
  * @property integer $approve
  */
-class Friends extends Model
+class Friends extends \app\components\Model
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%friends}}';
+        return 'friends';
     }
 
     /**
@@ -29,8 +28,8 @@ class Friends extends Model
     public function rules()
     {
         return [
-            [['user1', 'user2'], 'required'],
-            [['user1', 'user2', 'approve'], 'integer'],
+            [['requester', 'accepter'], 'required'],
+            [['requester', 'accepter', 'approve'], 'integer'],
         ];
     }
 
@@ -41,15 +40,16 @@ class Friends extends Model
     {
         return [
             'id' => 'ID',
-            'user1' => 'User1',
-            'user2' => 'User2',
+            'requester' => 'Requester',
+            'accepter' => 'Accepter',
             'approve' => 'Approve',
         ];
     }
     
-    public function getList($id){
-        $query = 'SELECT * FROM '.self::tableName().' WHERE user1 ='. $id . ' OR user2 = '.$id;
         
-        return parent::getList($query,$id);
-    }
+   public function getList($id){ 
+       $query = 'SELECT * FROM '.self::tableName().' WHERE requester ='. $id; 
+        
+       return parent::getList($query,$id); 
+   } 
 }
