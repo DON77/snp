@@ -9,7 +9,7 @@
 namespace app\components;
 
 
-abstract class BaseController extends yii\web\Controller
+abstract class BaseController extends \yii\web\Controller
 {
   public function run()
   {
