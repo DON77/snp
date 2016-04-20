@@ -15,6 +15,10 @@ class Controller extends BaseController
   {
     \app\components\SocketDaemon::setConfig(\Yii::$app->params['socketHost'], \Yii::$app->params['socketHost']);
 
+    if ($action->id == 'my-method') {
+      $this->enableCsrfValidation = false;
+    }
+    
     return parent::beforeAction($action);
 
   }
