@@ -24,7 +24,7 @@ class UserController extends Controller
                 'class' => AccessControl::className(),
                 'ruleConfig' => [
                     'class' => AccessRules::className(),
-                    'token'=>Yii::$app->request->post()['token']
+                    'token'=>Yii::$app->request->post('token')
                 ],
                 'rules' => [
                     [
