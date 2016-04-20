@@ -51,6 +51,11 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Logs in a user
+     * @return array
+     */
+
     public function actionLogin()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -62,7 +67,7 @@ class UserController extends Controller
         if(($token = $model->login())){
             $response = [
                 'success' => true,
-                'data' => ['message'=>'Login successfull', 'token'=>$token]
+                'data' => ['message'=>$this->findUser(Yii::$app->cahce->get($token)), 'token'=>$token]
             ];
         }else{
             $errors = [];
@@ -81,6 +86,10 @@ class UserController extends Controller
         return $response;
     }
 
+    /**
+     * @return array
+     * @throws ServerErrorHttpException
+     */
     public function actionRegister()
     {
         /** @var  $user \app\models\User */
@@ -110,7 +119,7 @@ class UserController extends Controller
 
               $response = [
                 'success' => true,
-                'data' => 'lava'//Yii::$app->getUser()''
+                'data' => []
             ];
         }else{
             $errors = [];
@@ -130,6 +139,11 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Logs out the current user
+     *
+     * @return array
+     */
     public function actionLogout()
     {
 
@@ -146,5 +160,22 @@ class UserController extends Controller
             'data' => []
         ];
 
+    }
+
+
+    /**
+     * Find user by authentcation key
+     *
+     * @param $authKey
+     * @return string
+     */
+    public function findUser($authKey)
+    {
+        $connection = \Yii::$app->db;
+
+        $model = $connection->createCommand("SELECT * FROM user where auth_key=$$authKey");
+        $model->queryOne();
+
+        return $model['fname'];
     }
 }
