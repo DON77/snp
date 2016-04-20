@@ -94,7 +94,7 @@ class SiteController extends Controller
     
     public function actionHobbies(){
         $model = new \app\models\Hobby();
-        $list = $model->getList($id);
+        $list = $model->getList();
         return json_encode($list);
     }
     
