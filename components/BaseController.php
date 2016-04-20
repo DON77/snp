@@ -13,7 +13,7 @@ abstract class BaseController extends \yii\web\Controller
 {
   public function beforeAction($action)
   {
-    \app\components\SocketDaemon::setConfig(Yii::$app->params['socketHost'], Yii::$app->params['socketHost']);
+    \app\components\SocketDaemon::setConfig(\Yii::$app->params['socketHost'], \Yii::$app->params['socketHost']);
   }
 }
 
