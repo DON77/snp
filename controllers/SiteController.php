@@ -17,16 +17,19 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','friends'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['*'],
                     ],
+                    
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    
+                  
                 ],
             ],
         ];
@@ -70,6 +73,29 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+    
+    public function actionFriends(){
+        print_r(Yii::$app->request->post());die;
     }
 
 }
