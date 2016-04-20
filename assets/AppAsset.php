@@ -24,7 +24,6 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/main.js', ///for local testing 
-        'js/jquery.js',
         'js/pace.js',
         'js/toastr.min.js',
         'js/scripts.js',
@@ -32,5 +31,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }
