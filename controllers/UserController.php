@@ -70,7 +70,7 @@ class UserController extends Controller
         if(($token = $model->login())){
             $response = [
                 'success' => true,
-                'data' => ['message'=>$this->findUser(Yii::$app->cahce->get($token)), 'token'=>$token]
+                'data' => ['message'=>$this->findUser(Yii::$app->cache->get($token)), 'token'=>$token]
             ];
         }else{
             $errors = [];
