@@ -21,21 +21,16 @@ class AccessRules extends AccessRule
             return true;
         }
 
-
-        $id = 0;
-        $tokenList = Yii::$app->cache->get('token');
-
-        if(array_key_exists($this->token, $tokenList)){
-            $id = $tokenList[$this->token];
-        }
+        $allow = false;
+        if(Yii::$app->cache->exists($this->token)){$allow = true;}
 
         foreach ($this->roles as $role) {
             if ($role === '?') { // Guest
-                if ($id == '0') {
+                if (!$allow) {
                     return true;
                 }
             }elseif ($role === '@') { //Simple user
-                if ($id != '0') {
+                if ($allow) {
                     return true;
                 }
             }
