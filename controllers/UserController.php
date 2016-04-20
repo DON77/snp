@@ -18,8 +18,12 @@ class UserController extends Controller
 
     public function behaviors()
     {
-
         return [
+            'contentNegotiator' => [
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'ruleConfig' => [
@@ -58,7 +62,6 @@ class UserController extends Controller
 
     public function actionLogin()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $post = Yii::$app->request->post();
 
         $model = new LoginForm();
@@ -94,7 +97,6 @@ class UserController extends Controller
     {
         /** @var  $user \app\models\User */
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $post = Yii::$app->request->post();
 
         $model = new RegistrationForm;
@@ -103,8 +105,7 @@ class UserController extends Controller
         $model->fname = $post['fname'];
         $date = new \DateTime($post['birth']);
         $model->birth = (string) $date->getTimestamp();
-       // $model->hobbies = implode(',',$post['hobbies']);
-        $model->hobbies = $post['hobbies'];
+        $model->hobbies = implode(',',$post['hobbies']);
         $model->password = $post['password'];
 
         if($model->validate()){
@@ -147,7 +148,6 @@ class UserController extends Controller
     public function actionLogout()
     {
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $token = Yii::$app->request->post()['token'];
 
         if(Yii::$app->cache->exists($token))
