@@ -30,7 +30,7 @@ class User extends Model  implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     const STATUS_NOTACTIVATED = 20;
-    
+
     /**
      * @inheritdoc
      */
@@ -38,8 +38,8 @@ class User extends Model  implements IdentityInterface
     {
         return 'user';
     }
-    
-    
+
+
 
     /**
      * @inheritdoc
@@ -67,7 +67,7 @@ class User extends Model  implements IdentityInterface
             TimestampBehavior::className(),
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -218,7 +218,6 @@ class User extends Model  implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-    
-    
+
 
 }
