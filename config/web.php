@@ -62,5 +62,5 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
-\app\components\SocketDaemon::setConfig($params['socketHost'], $params['socketHost']);
+
 return $config;
