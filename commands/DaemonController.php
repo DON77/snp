@@ -17,14 +17,18 @@ use yii\console\Controller;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class HelloController extends Controller
+class DaemonController extends Controller
 {
     /**
      * This command echoes what you have entered as the message.
      * @param string $message the message to be echoed.
      */
-    public function actionIndex($message = 'hello world')
+    public function startIndex()
     {
-        echo $message . "\n";
+        set_time_limit(0);
+        $host = 'localhost'; //host
+        $port = '8080'; //port
+        $daemon = new \app\components\SocketDaemon(Yii::$app->params['socketHost'], Yii::$app->params['socketPort']);
+        $daemon->start();
     }
 }
