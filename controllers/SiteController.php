@@ -17,16 +17,20 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','friends'],
                         'allow' => true,
-                        'roles' => ['@'],
+                         'roles' => ['?'],
                     ],
+                    
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'friends' => ['post'],
+                    
+                  
                 ],
             ],
         ];
@@ -44,6 +48,13 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+//    public function beforeAction($action) {
+//        
+//       
+//        parent::beforeAction($action);
+//        
+//    }
 
     public function actionIndex()
     {
@@ -52,5 +63,35 @@ class SiteController extends Controller
 
 
 
+
+
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAbout()
+    {
+       
+    }
+    
+    public function actionFriends(){
+       
+         if(Yii::$app->request->isPost){
+             
+            die(json_encode(Yii::$app->request->post()));
+        }else{
+            echo('4eghav');die;
+        }
+        
+    }
 
 }
